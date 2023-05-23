@@ -10,5 +10,10 @@
 </head>
 <body>
             @include('component.navbar')
+
+            <div class="bg-teal-200 text-white p-12 w-1/2">
+
+            </div>
 </body>
 </html>
+
