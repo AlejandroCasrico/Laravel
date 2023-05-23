@@ -1,6 +1,6 @@
 <html>
 <head>
-  <title>Formulario de Registro</title>
+  <title>Formulario de edicion</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-indigo-400">

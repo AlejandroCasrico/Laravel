@@ -1,12 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
-
+use App\Models\User;
 class AuthController extends Controller
 {
 
@@ -20,17 +20,18 @@ public function register(){
 
 public function authentication(Request $request){
 
-    $credentials = $request->only('name','password');
+    $credentials = $request->only('name', 'password');
 
-    if(Auth::attempt($credentials,true,'User')){
+    $usuario = User::where('name', $credentials['name'])->first();
+
+    if ($usuario && Hash::check($credentials['password'], $usuario->password)) {
+        Auth::login($usuario);
         return redirect()->intended('usuarios');
     }
 
     return back()->withErrors([
         'password' => 'Credenciales inválidas.',
     ]);
-
-
 }
 public function index(){
     $usuario =[

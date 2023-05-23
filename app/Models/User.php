@@ -20,12 +20,11 @@ class User extends Authenticatable
      */
 
      use AuthenticatableTrait;
-
     protected $table = 'usuarios';
 
     protected $fillable = [
         'name',
-        'password',
+        'password'
     ];
 
     /**
