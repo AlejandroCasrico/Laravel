@@ -11,7 +11,7 @@
     <div class="flex justify-center items-center h-screen">
     <div class="bg-teal-400 p-8 rounded shadow-md">
         <h2 class="text-2xl mb-4">Login</h2>
-        <form method="POST" action="{{ route('login') }}">
+        <form method="POST" action="{{ route('login')  }}">
             {{csrf_field()}}
 
             <div class="mb-4">

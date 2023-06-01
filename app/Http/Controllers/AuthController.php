@@ -7,22 +7,21 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use App\Models\User;
+use App\Models\Usuario;
+
 class AuthController extends Controller
 {
-
-public function login(){
-    return view('login');
-}
 public function register(){
     return view('register');
 }
-
-
-public function authentication(Request $request){
-
+public function login(){
+    return view('login');
+}
+public function authenticate(Request $request)
+{
     $credentials = $request->only('name', 'password');
 
-    $usuario = User::where('name', $credentials['name'])->first();
+    $usuario = Usuario::where('name', $credentials['name'])->first();
 
     if ($usuario && Hash::check($credentials['password'], $usuario->password)) {
         Auth::login($usuario);
@@ -30,9 +29,10 @@ public function authentication(Request $request){
     }
 
     return back()->withErrors([
-        'password' => 'Credenciales inválidas.',
+        'name' => 'Credenciales inválidas.',
     ]);
 }
+
 public function index(){
     $usuario =[
      'id'=>'',

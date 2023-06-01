@@ -9,7 +9,6 @@
                 <th class="px-6 py-3 text-left border-b">Estado</th>
                 <th class="px-6 py-3 text-left border-b">Login</th>
                 <th class="px-6 py-3 text-left border-b">Editar</th>
-                <th class="px-6 py-3 text-left border-b">Ver</th>
                 <th class="px-6 py-3 text-left border-b">Eliminar</th>
             </tr>
         </thead>
@@ -19,13 +18,10 @@
                     <td class="px-6 py-4 border-b">{{ $usuario->id }}</td>
                     <td class="px-6 py-4 border-b">{{ $usuario->name }}</td>
                     <td class="px-6 py-4 border-b">{{ $usuario->surnames }}</td>
-                    <td class="px-6 py-4 border-b">{{ $usuario->login }}</td>
                     <td class="px-6 py-4 border-b">{{ $usuario->idStatus }}</td>
+                    <td class="px-6 py-4 border-b">{{ $usuario->login }}</td>
                     <td class="px-6 py-4 border-b">
                         <a href="{{ route('edit', ['id' => $usuario->id]) }}" class="text-red-500">Editar</a>
-                    </td>
-                    <td class="px-6 py-4 border-b">
-                        <a href="{{ route('detail', ['id' => $usuario->id]) }}" class="text-blue-500">Ver</a>
                     </td>
                     <td class="px-6 py-4 border-b">
                         <a href="{{ route('delete', ['id' => $usuario->id]) }}" class="text-red-500">Eliminar</a>
