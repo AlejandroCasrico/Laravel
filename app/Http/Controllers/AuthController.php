@@ -9,14 +9,48 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\User;
 use App\Models\Usuario;
 
+
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 class AuthController extends Controller
 {
+
 public function register(){
     return view('register');
 }
+//devuelve vista login
 public function login(){
     return view('login');
 }
+public function home()
+{
+    $usuarios = Usuario::orderBy('name', 'ASC')->get();
+
+    return view('section.home', compact('usuarios'));
+}
+public function insertarUsuario(Request $request)
+{
+    $validator = Validator::make($request->all(), [
+        'name' => 'required|max:255|regex:/^[A-Za-z\s]+$/',
+        'surnames' => 'required|max:255|regex:/^[A-Za-z\s]+$/',
+        'password' => 'required|min:8'
+    ]);
+
+    if ($validator->fails()) {
+        return redirect()->back()->withErrors($validator)->withInput();
+    }
+
+    $usuario = new Usuario();
+    $usuario->name = $request->input('name');
+    $usuario->password = Hash::make($request->input('password'));
+    $usuario->surnames = $request->input('surnames');
+    $usuario->login = $request->input('login');
+    $usuario->idStatus = $request->input('status');
+
+
+    $usuario->save();
+    return redirect()->intended('login')->with('success', 'user created well!');
+}
+//authentificar
 public function authenticate(Request $request)
 {
     $credentials = $request->only('name', 'password');
@@ -25,11 +59,12 @@ public function authenticate(Request $request)
 
     if ($usuario && Hash::check($credentials['password'], $usuario->password)) {
         Auth::login($usuario);
-        return redirect()->intended('usuarios');
+        return redirect()->intended('Home')->with('success','Inicio de sesion exitoso');
     }
 
     return back()->withErrors([
-        'name' => 'Credenciales inválidas.',
+        'name' => 'invalid credentials',
+        'password'=>'invalid credentials.'
     ]);
 }
 
@@ -42,11 +77,12 @@ public function index(){
     ];
     return view('register',['usuario'=>$usuario]);
  }
+
 public function consultaUsuarios(){
     $usuarios = DB::table('usuarios')
     ->orderBy('name','ASC')
     ->get();
-    return view('lista',[
+    return view('section.home',[
         'usuarios'=> $usuarios
     ]);
 }
@@ -57,27 +93,7 @@ public function detail($id){
         "name"=>$usuario->name,
         "surnames"=>$usuario->surnames
        ];
-        return view('lista',['usuarios'=>$editUsuario]);
-}
-public function save(Request $request){
-    $validator = Validator::make($request->all(), [
-        'name' => 'required|max:255|regex:/^[A-Za-z\s]+$/',
-        'surnames' => 'required|max:255|regex:/^[A-Za-z\s]+$/',
-        'password' => 'required|min:8'
-    ]);
-
-    if ($validator->fails()) {
-        return redirect()->back()->withErrors($validator)->withInput();
-    }
-    $usuario = DB::table('usuarios')->insert([
-        'name'=>$request->input('name'),
-        'surnames'=>$request->input('surnames'),
-        'password'=>$request->input('password'),
-        'login' => $request->input('login'),
-        'idStatus'=>$request->input('status')
-    ]);
-
-   return redirect()->route('login');
+        return view('section.home',['usuarios'=>$editUsuario]);
 }
 
 public function delete($id){
@@ -85,8 +101,8 @@ public function delete($id){
     ->where('id','=',$id)
     ->delete();
 
-    return redirect()->route('consultaUsuarios')
-        ->with('status','Usuario eliminado exitosamente');
+    return redirect()->route('home')
+        ->with('status','user deleted successfully');
 }
 public function update(Request $request){
 
@@ -99,7 +115,7 @@ public function update(Request $request){
         'idStatus'=>$request->input('status')
     ]);
     return redirect()->route('consultaUsuarios', ['id' => $request->input('id')])
-        ->with('status', 'Usuario modificado exitosamente');
+        ->with('edit', 'successfully modified user');
 
 }
 public function editar($id){
@@ -110,4 +126,39 @@ public function editar($id){
     return view('edit', ['usuario' => $usuario]);
 }
 
+public function logout(Request $request)
+{
+    $request->session()->invalidate();
+    $request->session()->regenerateToken();
+    return redirect()->route('login')->with('logout', 'has left the session');
 }
+
+
+public function getLogs(Request $request)
+    {
+        $query = DB::table('logs');
+
+        // Verifica si se proporcionó algún término de búsqueda
+        if ($request->has('search')) {
+            $searchTerm = $request->input('search');
+            $query->where(function ($query) use ($searchTerm) {
+                $query->where('ip', 'LIKE', $searchTerm != '' ? '%' . $searchTerm . '%' : '%')
+                    ->where('id', 'LIKE', $searchTerm != '' ? '%' . $searchTerm . '%' : '%')
+                    ->where('usuario', 'LIKE', $searchTerm != '' ? '%' . $searchTerm . '%' : '%')
+                    ->where('fecha', 'LIKE', $searchTerm != '' ? '%' . $searchTerm . '%' : '%');
+            });
+        }
+
+        $logs = $query->get();
+
+        // Crear la respuesta con la vista
+        $response = response()->view('nombre_de_tu_vista', ['logs' => $logs]);
+
+        // Desactivar el almacenamiento en caché de la respuesta
+        $response->header('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0');
+
+        // Devolver la respuesta
+        return $response;
+    }
+}
+

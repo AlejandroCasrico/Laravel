@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use Illuminate\Support\Facades\Auth;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,14 +16,19 @@ use App\Http\Controllers\AuthController;
 */
 //esta ruta accede a home
 Route::get('/', function () {
-    return view('section.home');
+   return redirect()->route('login');
 });
-
+Route::get('/Home', [AuthController::class,'home'])->name('home');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 //esta ruta trae la lista
 Route::get('/usuarios',
 [AuthController::class,'consultaUsuarios']
+
 )->name('consultaUsuarios');
+
 Route::post('/login',[AuthController::class,'authenticate'])->name('login');
+
 Route::get('/login',
 [AuthController::class,'login']);
 
@@ -29,9 +36,9 @@ Route::get('/detail/{id}',[AuthController::class,'detail'])->name('detail');
 
 Route::get('/index',[AuthController::class,'index'])->name('index');
 
-Route::post('/register',
-[AuthController::class,'save'])->name('guardar');
-
+// Route::post('/register',
+// [AuthController::class,'save'])->name('guardar');
+Route::post('/register', [AuthController::class, 'insertarUsuario'])->name('usuarios.insertar');
 
 Route::get('/register',
 [AuthController::class,'index'])->name('register');

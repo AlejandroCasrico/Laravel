@@ -60,9 +60,14 @@ return [
     */
 
     'providers' => [
-        'users' => [
+        'usuarios' => [
             'driver' => 'eloquent',
-            'model' => App\Models\User::class,
+            'model' => App\Models\Usuario::class,
+        ],
+        'throttling' => [
+            'enabled' => true,
+            'decay_minutes' => 1, // Duración del bloqueo en minutos
+            'max_attempts' => 3, // Número máximo de intentos permitidos
         ],
 
         // 'users' => [

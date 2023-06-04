@@ -1,29 +1,44 @@
-<div style="display: flex; flex-direction: column;">
-    <div style="display: block; background-color: white; color: white; padding: 10px;">
-      <h1 class="text-black text-sm text-center">Alertas</h1>
-      <h4 class="text-black text-sm text-right">Fecha:</h4>
-    </div>
-    <div style="display: block; background-color: gray; color: white; padding: 10px;">
-      <div class="flex">
-        <div class="bg-blue-500 p-10 w-1/2">
-          <a href="">Alerta</a>
-          <div style="display: block; background-color: blue; color: white; padding: 10px;">
-            Segundo div
-          </div>
-          <div style="display: block; background-color: green; color: white; padding: 10px;">
-            Tercer div
-          </div>
-          <div style="display: block; background-color: orange; color: white; padding: 10px;">
-            Cuarto div
-          </div>
+<div class="flex flex-col">
+    <div class="block bg-gray-500 text-white p-4 flex justify-between items-center">
+        <h4 class="text-md text-left" id="fecha">Date:</h4>
+        <h1 class="text-3xl text-center underline">Alerts</h1>
+        <div>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                @csrf
+                <button type="submit" class="bg-red-600 hover:bg-red-700 text-white py-2 px-4 rounded">
+                    Get out
+                </button>
+            </form>
         </div>
-        <div class="bg-red-500 text-white p-5 w-1/2">
-          <p>Texto</p>
+        <script>
+            var fechaActual = new Date();
+            var dia = fechaActual.getDate();
+            var mes = fechaActual.getMonth() + 1;
+            var anio = fechaActual.getFullYear();
+            var fechaFormateada = dia + "/" + mes + "/" + anio;
+            document.getElementById("fecha").textContent = "Date: " + fechaFormateada;
+        </script>
+    </div>
+    <div class="block bg-gray-500 text-white p-4">
+        <div class="flex">
+            <div class="bg-blue-500 p-10 w-1/2">
+                <a href="">Alerta</a>
+                <div class="bg-blue-500 text-white p-4">
+                    Segundo div
+                </div>
+                <div class="bg-green-500 text-white p-4">
+                    Tercer div
+                </div>
+                <div class="bg-orange-500 text-white p-4">
+                    Cuarto div
+                </div>
+            </div>
+            <div class="bg-red-500 text-white p-5 w-1/2">
+                <p>Texto</p>
+            </div>
         </div>
-      </div>
     </div>
-    <div class="bg-cyan-800 text-white p-12">
-        <h5>Aqui va la tabla</h5>
-
+    <div class="bg-cyan-800 text-white p-12 h-[603px]">
+        @include('lista', ['usuarios' => $usuarios])
     </div>
-  </div>
+</div>
