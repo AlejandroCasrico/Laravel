@@ -23,6 +23,14 @@ public function login(){
 }
 public function home()
 {
+    $user_id = session('user_id');
+    $usuario = Usuario::find($user_id);
+
+    if (!$usuario) {
+        // El usuario no está autenticado, redirige a la página de inicio de sesión
+        return redirect()->route('login');
+    }
+
     $usuarios = Usuario::orderBy('name', 'ASC')->get();
 
     return view('section.home', compact('usuarios'));
