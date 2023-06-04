@@ -58,8 +58,8 @@ public function authenticate(Request $request)
     $usuario = Usuario::where('name', $credentials['name'])->first();
 
     if ($usuario && Hash::check($credentials['password'], $usuario->password)) {
-        Auth::login($usuario);
-        return redirect()->intended('Home')->with('success','Inicio de sesion exitoso');
+        session(['user_id' => $usuario->id]);
+        return redirect()->intended('Home')->with('success', 'Inicio de sesion exitoso');
     }
 
     return back()->withErrors([
