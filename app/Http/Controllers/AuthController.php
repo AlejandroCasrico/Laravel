@@ -40,7 +40,7 @@ public function home(Request $request)
     if ($request->has('show_all')) {
         $alerts = $query->get();
     } else {
-        $alerts = $query->limit(10)->get();
+        $alerts = $query->limit(5)->get();
     }
 
 
@@ -198,7 +198,7 @@ public function getLogs(Request $request)
         $priority = '';
         $protocol = '';
         $source = '';
-        $destination = '';
+        $destination = end($parts);
 
         // Extraer el valor entre corchetes
         preg_match('/\[Classification: \((.*?)\)\]/', $log, $matches);
@@ -228,20 +228,13 @@ public function getLogs(Request $request)
             $source = $sourceMatches[1];
         }
 
-        // Extraer el valor antes de la flecha -> y después del espacio en blanco
-        preg_match('/\} (.?) -> (.)$/', $log, $matches);
-        if (count($matches) > 0) {
-            $source = $matches[1];
-            $destination = $matches[2];
-        }
-
         // Crear una instancia de la clase DateTime para formatear el timestamp
         $dateTime = Carbon::createFromFormat("m/d/Y-H:i:s.u", substr($date, 0, -4));
         $formattedTimestamp = $dateTime->format("Y-m-d H:i:s");
 
         // Crear una nueva instancia del modelo Alert
         $alert = new Alert();
-
+        info($destination);
         // Asignar los valores extraídos a las propiedades del modelo Alert
         $alert->timestamp = $formattedTimestamp;
         $alert->alert_type = $description;
