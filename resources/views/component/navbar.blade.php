@@ -4,7 +4,7 @@
       <div class="flex flex-col items-center p-4">
         <h2 class="text-white text-sm">Welcome</h2>
         <div class="w-10 h-10 rounded-full bg-gray-500 mb-2"></div>
-        <h3>Nombre de usuario</h3>
+        <h3 class="text-white">{{ $session['name'] }}</h3>
         <div class="relative mt-4">
           <button class="flex items-center text-white text-sm focus:outline-none">
             <span>Mi Perfil</span>

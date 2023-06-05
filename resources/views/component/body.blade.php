@@ -38,11 +38,11 @@
             </div>
         </div>
         <div class="bg-white text-white p-12 border-gray-700 mt-4">
-            <h3 class="text-black text-center text-2xl">Reportes</h3>
+            <h3 class="text-black text-center text-2xl underline">Reportes</h3>
         </div>
     </div>
     <div class="bg-white text-white p-12 border-gray-700  ">
-        <h3 class="text-black text-center text-2xl ">User administration</h3>
+        <h3 class="text-black text-center text-2xl underline">User administration</h3>
         @include('lista', ['usuarios' => $usuarios])
     </div>
 </div>

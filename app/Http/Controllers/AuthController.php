@@ -67,17 +67,17 @@ public function authenticate(Request $request)
     $usuario = Usuario::where('name', $credentials['name'])->first();
 
     if ($usuario && Hash::check($credentials['password'], $usuario->password)) {
-        session(['user_id' => $usuario->id]);
-        $nombreUsuario = $usuario->name;
-        return redirect()->intended('Home')->with('success', 'Inicio de sesion exitoso');
-
+        session(['user_id' => $usuario->id, 'name' => $usuario->name]);
+        dd(session('name'));
+        return redirect()->intended('Home')->with('success', 'Inicio de sesión exitoso');
     }
 
     return back()->withErrors([
-        'name' => 'invalid credentials',
-        'password'=>'invalid credentials.'
+        'name' => 'Credenciales inválidas',
+        'password' => 'Credenciales inválidas'
     ]);
 }
+
 
 public function index(){
     $usuario =[
