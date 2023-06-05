@@ -1,5 +1,6 @@
-<div class="flex">
-    <div class="flex-shrink-0 bg-gray-900 h-screen" style="width: 20rem;">
+
+    <div class="flex flex-grow">
+    <div class="flex-shrink-0 bg-gray-900 h-auto" style="width: 20rem;">
       <div class="flex flex-col items-center p-4">
         <h2 class="text-white text-sm">Welcome</h2>
         <div class="w-10 h-10 rounded-full bg-gray-500 mb-2"></div>
@@ -27,6 +28,7 @@
         </div>
       </div>
     </div>
+
     <div class="flex-grow">
      @include('component.body')
       </div>
