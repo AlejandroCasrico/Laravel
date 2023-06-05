@@ -38,7 +38,7 @@
             </div>
         </div>
         <div class="bg-white text-white p-12 border-gray-700 mt-4">
-            <h3 class="text-black text-center text-2xl">Reportes</h3>
+            <h3 class="text-black text-center text-2xl">Reports</h3>
             @include('reportes')
         </div>
     </div>

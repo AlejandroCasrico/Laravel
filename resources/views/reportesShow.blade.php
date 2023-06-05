@@ -14,7 +14,7 @@
             <div class="bg-white shadow overflow-hidden border-b border-gray-200 sm:rounded-lg" style="margin:100px">
                 <h2 class="py-4 text-lg font-bold font-sans text-red-500 text-center">Alerts Reports (Full Table)</h2>
                 <div class="flex mb-4">
-                    <select class="px-2 py-1 border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-400">
+                    <select class="px-2 py-1 border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-400 mr-2">
                         <option value="option1">Option 1</option>
                         <option value="option2">Option 2</option>
                         <option value="option3">Option 3</option>
