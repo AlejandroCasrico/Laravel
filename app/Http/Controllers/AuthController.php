@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use App\Models\User;
+use App\Models\Alert;
 use App\Models\Usuario;
 
 
@@ -173,7 +174,28 @@ public function getLogs(Request $request)
 
     public function alerts(Request $request)
     {
-        info($request->all());
+        $log = $request->input('log');
+    
+        $data = json_decode($log, true); // Decodificar el JSON en un array asociativo
+    
+        // Acceder a los campos específicos
+        $timestamp = $data['timestamp'];  // "2023-06-05T00:32:52.520640+0000"
+        $srcIp = $data['src_ip'];  // "192.168.1.84"
+        $srcPort = $data['src_port'];  // 44328
+        $destIp = $data['dest_ip'];  // "192.168.1.90"
+        $destPort = $data['dest_port'];  // 8000
+        $protoco = $data['proto'];  // "TCP"
+
+        $alert = new Alert();
+
+        $alert->timestamp   =   $timestamp;
+        $alert->src_ip      =   $srcIp;
+        $alert->src_port    =   $srcPort;
+        $alert->dest_ip     =   $destIp;
+        $alert->dest_port   =   $destPort;
+        $alert->protocol    =   $protocol;
+
+        $alert->save();
     }
 }
 
