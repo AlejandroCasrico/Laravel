@@ -12,7 +12,7 @@
     <div class="table-container bg-gray-400">
         <div class="overflow-x-auto bg-gray">
             <div class="bg-white shadow overflow-hidden border-b border-gray-200 sm:rounded-lg" style="margin:100px">
-                <h2 class="py-4 text-lg font-bold font-sans text-red-500 text-center">Alerts Reports (Full Table)</h2>
+                <h2 class="py-4 text-lg font-bold font-sans text-red-500 text-center underline">Alerts Reports (Full Table)</h2>
                 <div class="flex mb-4">
                     <div class="flex items-center border rounded-md border-gray-300" style="margin-left: 20px;">
                         <form action="{{ route('alerts.full') }}">
@@ -24,12 +24,12 @@
                                 <option value="dest_address" {{ request()->get('filter')=='dest_address' ? 'selected' : '' }}>Destination address</option>
                             </select>
                             <input type="text" class="px-2 py-1 border border-transparent focus:outline-none focus:ring-2 focus:ring-blue-400" name='search' placeholder="Search..." value="{{ request()->get('search') ?? '' }}">
-                            <button class="px-2 py-1 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600">Search</button>
+                            <button class="px-2 py-1 bg-red-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600">Search</button>
                         </form>
                     </div>
                 </div>
-                <table class="min-w-full divide-y divide-gray-200 border border-gray-300 mx-100" style="table-layout: fixed;">
-                    <thead class="bg-gray-800 text-white">
+                <table class="min-w-full divide-y divide-gray-200 border border-gray-300 mx-100 " style="table-layout: fixed;">
+                    <thead class="bg-red-500  text-white">
                         <tr>
                             <th class="px-6 py-3 text-left border-b">ID</th>
                             <th class="px-6 py-3 text-left border-b">Description</th>

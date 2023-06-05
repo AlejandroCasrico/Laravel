@@ -51,7 +51,7 @@
                         <input type="name" id="name" name="name" required required maxlength="20" pattern="^[A-Za-z\s]+$"
                             class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-red-600">
                         @error('name')
-                        <span class="text-red-500">{{ $message }}</span>
+                        <span class="text-black">{{ $message }}</span>
                         @enderror
                     </div>
                     <div class="mb-4">
@@ -61,7 +61,7 @@
                         <input type="password" id="password" name="password" required required minlength="8"
                             class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-red-600">
                         @error('password')
-                        <span class="text-red-500">{{ $message }}</span>
+                        <span class="text-black">{{ $message }}</span>
                         @enderror
                     </div>
                     <div class='justify-center'>

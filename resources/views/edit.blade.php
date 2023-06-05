@@ -69,7 +69,7 @@
                 <button type="submit" class="bg-gray-500 hover:bg-gray-300 text-white font-bold py-2 px-4 rounded ml-2">
                     <i class="fas fa-save mr-2"></i>Guardar
                 </button>
-                <a href="{{ route('consultaUsuarios') }}" class="bg-gray-500 hover:bg-gray-300 text-white font-bold py-2 px-4 rounded ml-2">
+                <a href="{{ route('home') }}" class="bg-gray-500 hover:bg-gray-300 text-white font-bold py-2 px-4 rounded ml-2">
                     <i class="fas fa-times mr-2"></i>Cancelar
                 </a>
             </div>

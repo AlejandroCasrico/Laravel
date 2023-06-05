@@ -4,10 +4,10 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
-<body class="bg-indigo-500">
+<body class="bg-red-500">
 
   <div class="flex justify-center items-center h-screen">
-    <div class="bg-sky-400 p-8 rounded shadow-md">
+    <div class="bg-white p-8 rounded shadow-md">
       <h1 class="text-3xl font-bold flex items-center">
         <i class="fas fa-user-plus text-2xl mr-2"></i>
         Registro de usuario
@@ -74,7 +74,7 @@
         </div>
 
         <div>
-          <input type="submit" value="Registrarse" class="bg-emerald-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
+          <input type="submit" value="Registrarse" class="bg-gray-400 hover:bg-red-600 text-white font-bold py-2 px-4 rounded">
         </div>
       </form>
     </div>
