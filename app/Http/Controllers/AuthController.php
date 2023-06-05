@@ -9,7 +9,8 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\User;
 use App\Models\Alert;
 use App\Models\Usuario;
-
+use Carbon\Carbon;
+use DateTime;
 
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 class AuthController extends Controller
@@ -22,7 +23,7 @@ public function register(){
 public function login(){
     return view('login');
 }
-public function home()
+public function home(Request $request)
 {
     $user_id = session('user_id');
     $usuario = Usuario::find($user_id);
@@ -34,7 +35,20 @@ public function home()
 
     $usuarios = Usuario::orderBy('name', 'ASC')->get();
 
-    return view('section.home', compact('usuarios'));
+    $query = DB::table('alerts')->orderBy('timestamp', 'DESC');
+
+    if ($request->has('show_all')) {
+        $alerts = $query->get();
+    } else {
+        $alerts = $query->limit(10)->get();
+    }
+
+    return view('section.home', compact('usuarios', 'alerts'));
+}
+public function showFullTable()
+{
+    $alerts = DB::table('alerts')->orderBy('timestamp', 'DESC')->get();
+    return view('reportesShow', compact('alerts'));
 }
 public function insertarUsuario(Request $request)
 {
@@ -68,7 +82,6 @@ public function authenticate(Request $request)
 
     if ($usuario && Hash::check($credentials['password'], $usuario->password)) {
         session(['user_id' => $usuario->id, 'name' => $usuario->name]);
-        dd(session('name'));
         return redirect()->intended('Home')->with('success', 'Inicio de sesión exitoso');
     }
 
@@ -91,9 +104,10 @@ public function index(){
 
 public function consultaUsuarios(){
     $usuarios = DB::table('usuarios')
-    ->orderBy('name','ASC')
-    ->get();
-    return view('section.home',[
+        ->orderBy('name','ASC')
+        ->get();
+
+        return view('section.home',[
         'usuarios'=> $usuarios
     ]);
 }
@@ -174,11 +188,16 @@ public function getLogs(Request $request)
 
     public function alerts(Request $request)
     {
+
         $log = $request->input('log');
-    
-        $data = json_decode($log, true); // Decodificar el JSON en un array asociativo
-    
+        info($log);
+        /*$data = json_decode($log, true); // Decodificar el JSON en un array asociativo
+
         // Acceder a los campos específicos
+        $timestamp = $data['timestamp'];
+        $timestamp = str_replace("+0000", "", $timestamp);
+        $dateTime = DateTime::createFromFormat("Y-m-d\TH:i:s.u", $timestamp);
+        $formattedTimestamp = $dateTime->format("Y-m-d H:i:s");
         $timestamp = $data['timestamp'];  // "2023-06-05T00:32:52.520640+0000"
         $srcIp = $data['src_ip'];  // "192.168.1.84"
         $srcPort = $data['src_port'];  // 44328
@@ -186,16 +205,19 @@ public function getLogs(Request $request)
         $destPort = $data['dest_port'];  // 8000
         $protoco = $data['proto'];  // "TCP"
 
-        $alert = new Alert();
+        if($protoco != 'TCP'){
+            $alert = new Alert();
 
-        $alert->timestamp   =   $timestamp;
-        $alert->src_ip      =   $srcIp;
-        $alert->src_port    =   $srcPort;
-        $alert->dest_ip     =   $destIp;
-        $alert->dest_port   =   $destPort;
-        $alert->protocol    =   $protocol;
+            $alert->timestamp   =   $formattedTimestamp;
+            $alert->src_ip      =   $srcIp;
+            $alert->src_port    =   $srcPort;
+            $alert->dest_ip     =   $destIp;
+            $alert->dest_port   =   $destPort;
+            $alert->protocol    =   $protoco;
 
-        $alert->save();
+            $alert->save();
+        }*/
+
     }
 }
 

@@ -9,7 +9,7 @@
     <title>Home</title>
 </head>
 <body>
-    @include('component.navbar', ['session' => $session])
+    @include('component.navbar')
 
 
 </body>

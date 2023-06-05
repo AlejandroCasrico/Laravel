@@ -40,3 +40,4 @@ Route::put('/update', [AuthController::class, 'update'])->name('update')->middle
 
 
 Route::post('/api/alerts', [AuthController::class, 'alerts'])->name('alerts');
+Route::get('/alerts/full', [AuthController::class, 'showFullTable'])->name('alerts.full');
