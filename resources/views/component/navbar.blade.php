@@ -8,7 +8,7 @@
         <h3 class="text-white text-xl">{{ $usuario->name }}</h3>
         <div class="relative mt-4">
           <div class="flex text-center items-center text-white text-sm focus:outline-none" style="margin-left: 31%">
-            <span class="mr-1 text-center">Mi Perfil</span>
+            <span class="mr-1 text-center">My Profile</span>
             <i class="fas fa-user"></i>
           </div>
           <h5 class="text-white">Surnames:</h5>
