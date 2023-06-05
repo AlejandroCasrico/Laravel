@@ -142,7 +142,7 @@ public function update(Request $request){
         'idStatus'=>$request->input('status')
     ]);
     return redirect()->route('home', ['id' => $request->input('id')])
-        ->with('edit', 'successfully modified user');
+        ->with('edit', 'user modified successfully');
 
 }
 public function editar($id){
