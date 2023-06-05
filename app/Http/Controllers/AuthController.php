@@ -44,7 +44,7 @@ public function home(Request $request)
     }
 
 
-    return view('section.home', compact('usuarios', 'alerts'));
+    return view('section.home', compact('usuarios', 'alerts','usuario'));
 }
 //muestra toda la tabla
 public function showFullTable(Request $request)

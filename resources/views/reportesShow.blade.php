@@ -8,6 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Full Table</title>
 </head>
+@include('section.header')
 <body>
     <div class="table-container bg-gray-400">
         <div class="overflow-x-auto bg-gray">
