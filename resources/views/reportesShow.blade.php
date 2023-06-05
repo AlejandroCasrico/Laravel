@@ -29,7 +29,7 @@
                         </form>
                     </div>
                 </div>
-                <table class="min-w-full divide-y divide-gray-200 border border-gray-300 mx-100 " style="table-layout: fixed;">
+                <table class="min-w-full divide-y divide-gray-200 border border-gray-300 mx-100 rounded " style="table-layout: fixed;">
                     <thead class="bg-red-500  text-white">
                         <tr>
                             <th class="px-6 py-3 text-left border-b">ID</th>
