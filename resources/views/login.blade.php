@@ -22,7 +22,7 @@
     <div class="flex justify-center items-center h-screen">
         <div class="bg-red-900 flex justify-center rounded shadow-2xl" style="position: absolute; z-index: 2;">
             <h1 class="text-5xl text-slate-100">
-                <i class="fas fa-exclamation-triangle mr-4"></i> Sistema de alertas
+                <i class="fas fa-exclamation-triangle mr-4 flex justify-center"></i>ID system
             </h1>
             <div class="bg-amber-500 p-8 rounded shadow-2xl shadow" style="position: absolute; z-index: 2; margin:25%;">
                 <h2 class="text-2xl mb-4 text-3xl text-white text-center">

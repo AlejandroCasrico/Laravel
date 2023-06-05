@@ -67,7 +67,9 @@ public function authenticate(Request $request)
 
     if ($usuario && Hash::check($credentials['password'], $usuario->password)) {
         session(['user_id' => $usuario->id]);
+        $nombreUsuario = $usuario->name;
         return redirect()->intended('Home')->with('success', 'Inicio de sesion exitoso');
+
     }
 
     return back()->withErrors([
@@ -167,6 +169,11 @@ public function getLogs(Request $request)
 
         // Devolver la respuesta
         return $response;
+    }
+
+    public function alerts(Request $request)
+    {
+        info($request->all());
     }
 }
 

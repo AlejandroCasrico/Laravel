@@ -15,7 +15,7 @@ return [
 
     'defaults' => [
         'guard' => 'web',
-        'passwords' => 'users',
+        'passwords' => 'usuarios',
     ],
 
     /*
@@ -38,7 +38,7 @@ return [
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'usuarios',
         ],
     ],
 
@@ -62,18 +62,8 @@ return [
     'providers' => [
         'usuarios' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Usuario::class,
+            'model' => App\Models\Usuario::class, // Asegúrate de que el modelo sea correcto
         ],
-        'throttling' => [
-            'enabled' => true,
-            'decay_minutes' => 1, // Duración del bloqueo en minutos
-            'max_attempts' => 3, // Número máximo de intentos permitidos
-        ],
-
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
     ],
 
     /*
@@ -97,7 +87,7 @@ return [
 
     'passwords' => [
         'users' => [
-            'provider' => 'users',
+            'provider' => 'usuarios',
             'table' => 'password_reset_tokens',
             'expire' => 60,
             'throttle' => 60,

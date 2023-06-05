@@ -35,7 +35,15 @@
     </script>
     @endif
     <div class="table-container bg-gray-400">
-    <table class="min-w-full divide-y divide-gray-200 border border-gray-300"  style="table-layout: fixed;">
+        <ul class="my-3" style="margin-bottom: -1.25rem">
+            <li class="text-left">
+                <a href="{{ route('index') }}" class="bg-green-400 text-black hover:bg-blue-500 hover:text-white transition duration-300 ease-in-out px-4 py-2 rounded">
+                    + Add new
+                </a>
+            </li>
+        </ul>
+        <div class="flex-grow">
+           <table class="min-w-full divide-y divide-gray-200 border border-gray-300"  style="table-layout: fixed;">
         <caption class="py-4 text-lg font-bold font-sans text-red-500">Users List</caption>
         <thead class="bg-gray-800 text-white">
             <tr>
@@ -70,14 +78,9 @@
             @endforelse
         </tbody>
     </table>
+          </div>
+
 </div>
-    <ul class="my-4">
-        <li class="text-left">
-            <a href="{{ route('index') }}" class="fixed bg-green-400 text-black hover:bg-blue-500 hover:text-white transition duration-300 ease-in-out px-4 py-2 rounded">
-               + Add new
-            </a>
-        </li>
-    </ul>
 </div>
 <script>
     function confirmDelete() {
