@@ -12,6 +12,7 @@
 
 
 <form method="POST" action="{{ route('solution') }}">
+    @csrf
     @if($detail)
 <input type="hidden" name="alert_id" value="{{ $alert->id }}">
 <label>Severidad:</label>
@@ -26,7 +27,7 @@
     <option value="0" {{ $detail->falsoPositivo==0? 'selected' : '' }}>NO</option>
 </select>
 <label>Incidente confirmado:</label>
-<select name="incidenteConfirmado">
+<select name="incidentesConfirmado">
     <option value="1" {{ $detail->incidentesConfirmado==1 ? 'selected' : '' }} >SI</option>
     <option value="0" {{ $detail->incidentesConfirmado==0 ? 'selected' : '' }}>NO</option>
 </select>

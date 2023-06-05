@@ -273,7 +273,7 @@ public function getLogs(Request $request)
                 'alert_id'=>$request->input('alert_id'),
                 'severidad'=>$request->input('severidad'),
                 'falsoPositivo' => $request->input('falsoPositivo'),
-                'incidentesConfirmados'=>$request->input('incidentesConfirmados'),
+                'incidentesConfirmado'=>$request->input('incidentesConfirmados'),
                 'accionesCorrectivas'=>$request->input('accionesCorrectivas')
             ]);
         }else{
