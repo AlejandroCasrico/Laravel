@@ -17,42 +17,44 @@
             </li>
         </ul>
         <div class="flex-grow">
-            <div style="max-height: 400px; overflow: auto;">
-                <table class="min-w-full divide-y divide-gray-200 border border-gray-300" style="table-layout: fixed;">
-                    <caption class="py-4 text-lg font-bold font-sans text-red-500">Alerts Reports</caption>
-                    <thead class="bg-gray-800 text-white">
-                        <tr>
-                            <th class="px-6 py-3 text-left border-b">ID</th>
-                            <th class="px-6 py-3 text-left border-b">alert type</th>
-                            <th class="px-6 py-3 text-left border-b">classification</th>
-                            <th class="px-6 py-3 text-left border-b">priority</th>
-                            <th class="px-6 py-3 text-left border-b">Protocol</th>
-                            <th class="px-6 py-3 text-left border-b">destination</th>
-                            <th class="px-6 py-3 text-left border-b">src_address</th>
-                            <th class="px-6 py-3 text-left border-b">timestamp</th>
-                        </tr>
-                    </thead>
-                    <tbody class="divide-y divide-gray-200">
-                        @forelse($alerts as $alert)
-                            <tr>
-                                <td class="px-6 py-4 border-b">{{ $alert->id }}</td>
-                                <td class="px-6 py-4 border-b">{{ $alert->alert_type }}</td>
-                                <td class="px-6 py-4 border-b">{{ $alert->classification }}</td>
-                                <td class="px-6 py-4 border-b">{{ $alert->priority }}</td>
-                                <td class="px-6 py-4 border-b">{{ $alert->protocol }}</td>
-                                <td class="px-6 py-4 border-b">{{ $alert->dest_address }}</td>
-                                <td class="px-6 py-4 border-b">{{ $alert->src_address }}</td>
-                                <td class="px-6 py-4 border-b">{{ $alert->timestamp }}</td>
-                            </tr>
-                        @empty
-                            <tr>
-                                <td class="px-6 py-4 border-b" colspan="8">There are no registered alerts</td>
-                            </tr>
-                        @endforelse
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
+           <table class="min-w-full divide-y divide-gray-200 border border-gray-300"  style="table-layout: fixed;">
+        <caption class="py-4 text-lg font-bold font-sans text-red-500">Alerts Reports</caption>
+        <thead class="bg-gray-800 text-white">
+            <tr>
+                <th class="px-6 py-3 text-left border-b">ID</th>
+                <th class="px-6 py-3 text-left border-b">alert type</th>
+                <th class="px-6 py-3 text-left border-b">classification</th>
+                <th class="px-6 py-3 text-left border-b">priority</th>
+                <th class="px-6 py-3 text-left border-b">Protocol</th>
+                <th class="px-6 py-3 text-left border-b">destination</th>
+                 <th class="px-6 py-3 text-left border-b">src_address</th>
+                <th class="px-6 py-3 text-left border-b">timestamp</th>
+
+            </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-200">
+            @forelse($alerts as $alert)
+                <tr>
+                    <td class="px-6 py-4 border-b">{{ $alert->id }}</td>
+                    <td class="px-6 py-4 border-b">{{ $alert->alert_type }}</td>
+                    <td class="px-6 py-4 border-b">{{ $alert->classification }}</td>
+                    <td class="px-6 py-4 border-b">{{ $alert->priority }}</td>
+                    <td class="px-6 py-4 border-b">{{ $alert->protocol }}</td>
+                    <td class="px-6 py-4 border-b">{{ $alert->dest_address }}</td>
+                    <td class="px-6 py-4 border-b">{{ $alert->src_address }}</td>
+                    <td class="px-6 py-4 border-b">{{ $alert->timestamp }}</td>
+                </tr>
+            @empty
+                <tr>
+                    <td class="px-6 py-4 border-b" colspan="8">There s no register alerts </td>
+                </tr>
+            @endforelse
+        </tbody>
+    </table>
+          </div>
+
+</div>
+</div>
 </body>
 </html>
+
