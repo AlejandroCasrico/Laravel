@@ -36,7 +36,7 @@ public function home(Request $request)
     $usuarios = Usuario::orderBy('name', 'ASC')->get();
 
     $query = DB::table('alerts')->orderBy('timestamp', 'DESC');
-
+    $totalAlert = DB::table('alerts')->count();
     if ($request->has('show_all')) {
         $alerts = $query->get();
     } else {
@@ -44,7 +44,7 @@ public function home(Request $request)
     }
 
 
-    return view('section.home', compact('usuarios', 'alerts','usuario'));
+    return view('section.home', compact('usuarios', 'alerts','usuario','totalAlert'));
 }
 //muestra toda la tabla
 public function showFullTable(Request $request)
@@ -250,6 +250,44 @@ public function getLogs(Request $request)
 
         // Guardar el modelo Alert en la base de datos
         $alert->save();
+    }
+
+    public function alertDetail($id){
+        $alert=DB::table('alerts')
+        ->where('id','=',$id)
+        ->first();
+        $detail =DB::table('alert_details')
+        ->where('alert_id','=',$id)
+        ->first();
+
+
+        return view('alert_detail', ['alert' => $alert,'detail'=>$detail]);
+    }
+    public function solution(Request $request){
+
+        $detail = DB::table('alert_details')
+        ->where('id','=',$request->input('alert_id'));
+
+        if($detail){
+            $detail->update([
+                'alert_id'=>$request->input('alert_id'),
+                'severidad'=>$request->input('severidad'),
+                'falsoPositivo' => $request->input('falsoPositivo'),
+                'incidentesConfirmados'=>$request->input('incidentesConfirmados'),
+                'accionesCorrectivas'=>$request->input('accionesCorrectivas')
+            ]);
+        }else{
+            $detail->created([
+                'alert_id'=>$request->input('alert_id'),
+                'severidad'=>$request->input('severidad'),
+                'falsoPositivo' => $request->input('falsoPositivo'),
+                'incidentesConfirmados'=>$request->input('incidentesConfirmados'),
+                'accionesCorrectivas'=>$request->input('accionesCorrectivas')
+            ]);
+        }
+        return redirect()->route('home', ['id' => $request->input('id')])
+            ->with('home', 'modified successfully');
+
     }
 
 }

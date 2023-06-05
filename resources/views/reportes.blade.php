@@ -21,6 +21,7 @@
                 <th class="px-6 py-3 text-left border-b">Destination</th>
                  <th class="px-6 py-3 text-left border-b">Source Address</th>
                 <th class="px-6 py-3 text-left border-b">Timestamp</th>
+                <th></th>
             </tr>
         </thead>
         <tbody class="divide-y divide-gray-200">
@@ -34,6 +35,9 @@
                     <td class="px-6 py-4 border-b">{{ $alert->dest_address }}</td>
                     <td class="px-6 py-4 border-b">{{ $alert->src_address }}</td>
                     <td class="px-6 py-4 border-b">{{ $alert->timestamp }}</td>
+                    <td class="px-6 py-4 border-b">
+                        <a href="{{ route('alert_detail', ['id' => $alert->id]) }}" class="text-red-500">Inspect</a>
+                    </td>
                 </tr>
             @empty
                 <tr>
