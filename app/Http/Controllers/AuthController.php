@@ -188,36 +188,35 @@ public function getLogs(Request $request)
 
     public function alerts(Request $request)
     {
-
         $log = $request->input('log');
         info($log);
-        /*$data = json_decode($log, true); // Decodificar el JSON en un array asociativo
-
+        $data = json_decode($log, true); // Decodificar el JSON en un array asociativo
+    
         // Acceder a los campos específicos
         $timestamp = $data['timestamp'];
         $timestamp = str_replace("+0000", "", $timestamp);
         $dateTime = DateTime::createFromFormat("Y-m-d\TH:i:s.u", $timestamp);
         $formattedTimestamp = $dateTime->format("Y-m-d H:i:s");
-        $timestamp = $data['timestamp'];  // "2023-06-05T00:32:52.520640+0000"
-        $srcIp = $data['src_ip'];  // "192.168.1.84"
-        $srcPort = $data['src_port'];  // 44328
-        $destIp = $data['dest_ip'];  // "192.168.1.90"
-        $destPort = $data['dest_port'];  // 8000
-        $protoco = $data['proto'];  // "TCP"
-
-        if($protoco != 'TCP'){
-            $alert = new Alert();
-
-            $alert->timestamp   =   $formattedTimestamp;
-            $alert->src_ip      =   $srcIp;
-            $alert->src_port    =   $srcPort;
-            $alert->dest_ip     =   $destIp;
-            $alert->dest_port   =   $destPort;
-            $alert->protocol    =   $protoco;
-
-            $alert->save();
-        }*/
-
+        $alertType = $data['msg']; // Tipo de alerta
+        $classification = null; // Clasificación de la alerta (opcional)
+        $priority = 3; // Prioridad de la alerta
+        $protocol = $data['proto']; // Protocolo de la alerta
+        $srcAddress = $data['src_ip']; // Dirección IP de origen
+        $destAddress = $data['dest_ip']; // Dirección IP de destino
+    
+        $alert = new Alert();
+    
+        $alert->timestamp = $formattedTimestamp;
+        $alert->alert_type = $alertType;
+        $alert->classification = $classification;
+        $alert->priority = $priority;
+        $alert->protocol = $protocol;
+        $alert->src_address = $srcAddress;
+        $alert->dest_address = $destAddress;
+    
+        $alert->save();
     }
+    
+    
 }
 

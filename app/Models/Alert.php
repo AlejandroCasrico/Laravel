@@ -12,11 +12,12 @@ class Alert extends Model
 
     protected $fillable = [
         'timestamp',
-        'src_ip',
-        'src_port',
-        'dest_ip',
-        'dest_port',
+        'alert_type',
+        'classification',
+        'priority',
         'protocol',
+        'src_address',
+        'dest_address',
     ];
 
 
