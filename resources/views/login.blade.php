@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <style>
-        .bg-red-900 {
+        .bg-gray-100 {
             width: 550px;
             height: 600px;
             margin-top: 5%;
@@ -17,14 +17,13 @@
     </style>
 </head>
 
-<body class="bg-black">
-    <img src="/assets/dd.jpeg" alt="warning" width="100%" height="100%" style="position: absolute; z-index: 1;">
+<body class="bg-white">
     <div class="flex justify-center items-center h-screen">
-        <div class="bg-red-900 flex justify-center rounded shadow-2xl" style="position: absolute; z-index: 2;">
+        <div class="bg-gray-100 flex justify-center rounded shadow-2xl" style="position: absolute; z-index: 2;">
             <h1 class="text-5xl text-slate-100">
-                <i class="fas fa-exclamation-triangle mr-4 flex justify-center"></i>ID system
+                <img src="/assets/logoal.png" class="rounded" alt="">
             </h1>
-            <div class="bg-amber-500 p-8 rounded shadow-2xl shadow" style="position: absolute; z-index: 2; margin:25%;">
+            <div class="bg-red-500 p-8 rounded shadow-2xl shadow" style="position: absolute; z-index: 2; margin:25%;">
                 <h2 class="text-2xl mb-4 text-3xl text-white text-center">
                  Login
                 </h2>
@@ -65,7 +64,7 @@
                         <span class="text-red-500">{{ $message }}</span>
                         @enderror
                     </div>
-                    <div>
+                    <div class='justify-center'>
                         <button type="submit" class="px-4 py-2 bg-black text-white rounded hover:bg-red-400 font-sans">
                             <i class="fas fa-sign-in-alt mr-2"></i> Login
                         </button>
