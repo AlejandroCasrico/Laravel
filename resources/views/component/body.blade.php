@@ -21,21 +21,6 @@
     </div>
     <div class="block bg-gray-500 text-white p-4">
         <div class="flex">
-            <div class="bg-blue-500 p-10 w-1/2">
-                <a href="">Alerta</a>
-                <div class="bg-blue-500 text-white p-4">
-                    Segundo div
-                </div>
-                <div class="bg-green-500 text-white p-4">
-                    Tercer div
-                </div>
-                <div class="bg-orange-500 text-white p-4">
-                    Cuarto div
-                </div>
-            </div>
-            <div class="bg-red-500 text-white p-5 w-1/2">
-                <p>Texto</p>
-            </div>
         </div>
         <div class="bg-white text-white p-12 border-gray-700 mt-4">
             <h3 class="text-black text-center text-2xl">Reports</h3>
@@ -44,6 +29,6 @@
     </div>
     <div class="bg-white text-white p-12 border-gray-700  ">
         <h3 class="text-black text-center text-2xl ">User administration</h3>
-        @include('lista', ['usuarios' => $usuarios])
+        @include('lista')
     </div>
 </div>

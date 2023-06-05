@@ -43,6 +43,7 @@
                     <td class="px-6 py-4 border-b">{{ $alert->dest_address }}</td>
                     <td class="px-6 py-4 border-b">{{ $alert->src_address }}</td>
                     <td class="px-6 py-4 border-b">{{ $alert->timestamp }}</td>
+
                 </tr>
             @empty
                 <tr>

@@ -46,9 +46,10 @@ public function home(Request $request)
 
     return view('section.home', compact('usuarios', 'alerts'));
 }
-public function showFullTable()
+//muestra toda la tabla
+public function showFullTable(Request $request)
 {
-    $alerts = DB::table('alerts')->orderBy('timestamp', 'DESC')->get();
+    $alerts = Alert::filter($request->collect());//DB::table('alerts')->orderBy('timestamp', 'DESC')->get();
     return view('reportesShow', compact('alerts'));
 }
 public function insertarUsuario(Request $request)
@@ -140,7 +141,7 @@ public function update(Request $request){
         'login' => $request->input('login'),
         'idStatus'=>$request->input('status')
     ]);
-    return redirect()->route('consultaUsuarios', ['id' => $request->input('id')])
+    return redirect()->route('home', ['id' => $request->input('id')])
         ->with('edit', 'successfully modified user');
 
 }
@@ -149,7 +150,10 @@ public function editar($id){
     ->where('id','=',$id)
     ->first();
 
+
+
     return view('edit', ['usuario' => $usuario]);
+
 }
 
 public function logout(Request $request)
