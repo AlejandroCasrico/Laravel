@@ -8,32 +8,6 @@
     <title>Home</title>
 </head>
 <body>
-    @if (session('status'))
-    <div class="bg-green-300 text-green-800 p-4 mb-4 rounded" id="successdel-alert">
-        {{ session('status') }}
-    </div>
-    <script>
-              setTimeout(function(){
-            var successAlert = document.getElementById('successdel-alert');
-            if (successAlert) {
-                successAlert.style.display = 'none';
-            }
-        }, 4000);
-    </script>
-    @endif
-    @if (session('edit'))
-    <div class="bg-green-300 text-green-800 p-4 mb-4 rounded" id="successedit-alert">
-        {{ session('edit') }}
-    </div>
-    <script>
-          setTimeout(function(){
-        var successAlert = document.getElementById('successedit-alert');
-        if (successAlert) {
-            successAlert.style.display = 'none';
-        }
-    }, 4000);
-    </script>
-    @endif
     <div class="table-container bg-gray-400">
         <ul class="my-3" style="margin-bottom: -1.25rem">
             <li class="text-left">
@@ -43,46 +17,42 @@
             </li>
         </ul>
         <div class="flex-grow">
-           <table class="min-w-full divide-y divide-gray-200 border border-gray-300"  style="table-layout: fixed;">
-        <caption class="py-4 text-lg font-bold font-sans text-red-500">Alerts Reports</caption>
-        <thead class="bg-gray-800 text-white">
-            <tr>
-                <th class="px-6 py-3 text-left border-b">ID</th>
-                <th class="px-6 py-3 text-left border-b">SourceIp</th>
-                <th class="px-6 py-3 text-left border-b">SourcePort</th>
-                <th class="px-6 py-3 text-left border-b">DestIp</th>
-                <th class="px-6 py-3 text-left border-b">depport</th>
-                <th class="px-6 py-3 text-left border-b">Protocol</th>
-                <th class="px-6 py-3 text-left border-b">DataTime</th>
-            </tr>
-        </thead>
-        <tbody class="divide-y divide-gray-200">
-            @forelse($alerts as $alert)
-                <tr>
-                    <td class="px-6 py-4 border-b">{{ $alert->id }}</td>
-                    <td class="px-6 py-4 border-b">{{ $alert->src_ip }}</td>
-                    <td class="px-6 py-4 border-b">{{ $alert->src_port }}</td>
-                    <td class="px-6 py-4 border-b">{{ $alert->dest_ip }}</td>
-                    <td class="px-6 py-4 border-b">{{ $alert->dest_port }}</td>
-                    <td class="px-6 py-4 border-b">{{ $alert->protocol }}</td>
-                    <td class="px-6 py-4 border-b">{{ $alert->timestamp }}</td>
-                </tr>
-            @empty
-                <tr>
-                    <td class="px-6 py-4 border-b" colspan="8">There s no register alerts </td>
-                </tr>
-            @endforelse
-        </tbody>
-    </table>
-          </div>
-
-</div>
-</div>
-<script>
-    function confirmDelete() {
-        return confirm('Are you sure you want to delete this user?');
-    }
-</script>
+            <div style="max-height: 400px; overflow: auto;">
+                <table class="min-w-full divide-y divide-gray-200 border border-gray-300" style="table-layout: fixed;">
+                    <caption class="py-4 text-lg font-bold font-sans text-red-500">Alerts Reports</caption>
+                    <thead class="bg-gray-800 text-white">
+                        <tr>
+                            <th class="px-6 py-3 text-left border-b">ID</th>
+                            <th class="px-6 py-3 text-left border-b">alert type</th>
+                            <th class="px-6 py-3 text-left border-b">classification</th>
+                            <th class="px-6 py-3 text-left border-b">priority</th>
+                            <th class="px-6 py-3 text-left border-b">Protocol</th>
+                            <th class="px-6 py-3 text-left border-b">destination</th>
+                            <th class="px-6 py-3 text-left border-b">src_address</th>
+                            <th class="px-6 py-3 text-left border-b">timestamp</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200">
+                        @forelse($alerts as $alert)
+                            <tr>
+                                <td class="px-6 py-4 border-b">{{ $alert->id }}</td>
+                                <td class="px-6 py-4 border-b">{{ $alert->alert_type }}</td>
+                                <td class="px-6 py-4 border-b">{{ $alert->classification }}</td>
+                                <td class="px-6 py-4 border-b">{{ $alert->priority }}</td>
+                                <td class="px-6 py-4 border-b">{{ $alert->protocol }}</td>
+                                <td class="px-6 py-4 border-b">{{ $alert->dest_address }}</td>
+                                <td class="px-6 py-4 border-b">{{ $alert->src_address }}</td>
+                                <td class="px-6 py-4 border-b">{{ $alert->timestamp }}</td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td class="px-6 py-4 border-b" colspan="8">There are no registered alerts</td>
+                            </tr>
+                        @endforelse
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
-

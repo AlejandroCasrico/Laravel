@@ -43,6 +43,7 @@ public function home(Request $request)
         $alerts = $query->limit(10)->get();
     }
 
+
     return view('section.home', compact('usuarios', 'alerts'));
 }
 public function showFullTable()
@@ -190,33 +191,69 @@ public function getLogs(Request $request)
     {
         $log = $request->input('log');
         info($log);
-        $data = json_decode($log, true); // Decodificar el JSON en un array asociativo
-    
-        // Acceder a los campos específicos
-        $timestamp = $data['timestamp'];
-        $timestamp = str_replace("+0000", "", $timestamp);
-        $dateTime = DateTime::createFromFormat("Y-m-d\TH:i:s.u", $timestamp);
+        $parts = explode(' ', $log);
+        $date = $parts[0];
+        $description = str_replace("-", " ", $parts[4]);
+        $classification = '';
+        $priority = '';
+        $protocol = '';
+        $source = '';
+        $destination = '';
+
+        // Extraer el valor entre corchetes
+        preg_match('/\[Classification: \((.*?)\)\]/', $log, $matches);
+        if (count($matches) > 0) {
+            $classification = $matches[1];
+            // Extraer el valor entre paréntesis y asignarlo a la variable $classification
+            preg_match('/\((.*?)\)/', $classification, $parenthesesMatches);
+            if (count($parenthesesMatches) > 0) {
+                $classification = $parenthesesMatches[1];
+            }
+        }
+
+        // Extraer el valor después de los dos puntos en [Priority: 3]
+        preg_match('/\[Priority: (.*?)\]/', $log, $priorityMatches);
+        if (count($priorityMatches) > 0) {
+            $priority = $priorityMatches[1];
+        }
+        //protocol
+        preg_match('/\{([^}]*)\}/', $log, $protocolMatches);
+        if (count($protocolMatches) > 0) {
+            $protocol = $protocolMatches[1];
+        }
+
+        // Extraer el valor antes de la flecha ->
+        preg_match('/\} (.*?) ->/', $log, $sourceMatches);
+        if (count($sourceMatches) > 0) {
+            $source = $sourceMatches[1];
+        }
+
+        // Extraer el valor antes de la flecha -> y después del espacio en blanco
+        preg_match('/\} (.?) -> (.)$/', $log, $matches);
+        if (count($matches) > 0) {
+            $source = $matches[1];
+            $destination = $matches[2];
+        }
+
+        // Crear una instancia de la clase DateTime para formatear el timestamp
+        $dateTime = Carbon::createFromFormat("m/d/Y-H:i:s.u", substr($date, 0, -4));
         $formattedTimestamp = $dateTime->format("Y-m-d H:i:s");
-        $alertType = $data['msg']; // Tipo de alerta
-        $classification = null; // Clasificación de la alerta (opcional)
-        $priority = 3; // Prioridad de la alerta
-        $protocol = $data['proto']; // Protocolo de la alerta
-        $srcAddress = $data['src_ip']; // Dirección IP de origen
-        $destAddress = $data['dest_ip']; // Dirección IP de destino
-    
+
+        // Crear una nueva instancia del modelo Alert
         $alert = new Alert();
-    
+
+        // Asignar los valores extraídos a las propiedades del modelo Alert
         $alert->timestamp = $formattedTimestamp;
-        $alert->alert_type = $alertType;
-        $alert->classification = $classification;
+        $alert->alert_type = $description;
+        $alert->classification =  $classification;
         $alert->priority = $priority;
         $alert->protocol = $protocol;
-        $alert->src_address = $srcAddress;
-        $alert->dest_address = $destAddress;
-    
+        $alert->src_address = $source;
+        $alert->dest_address = $destination;
+
+        // Guardar el modelo Alert en la base de datos
         $alert->save();
     }
-    
-    
+
 }
 
