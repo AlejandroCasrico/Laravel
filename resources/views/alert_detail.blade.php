@@ -52,7 +52,7 @@
     <option value="0" >NO</option>
 </select>
 <label>Action correctivas:</label>
-<input type="text" value="" name="accionesCorrectivas">
+<input class="bg-slate-300" type="text" value="" name="accionesCorrectivas">
 @endif
 <button type="submit" class="bg-gray-500 hover:bg-gray-300 text-white font-bold py-2 px-4 rounded ml-2">
     <i class="fas fa-save mr-2"></i>Guardar

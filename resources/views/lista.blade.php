@@ -58,7 +58,7 @@
                     <td class="px-6 py-4 border-b">{{ $usuario->idStatus }}</td>
                     <td class="px-6 py-4 border-b">{{ $usuario->login }}</td>
                     <td class="px-6 py-4 border-b">
-                        <a href="{{ route('edit', ['id' => $usuario->id]) }}" class="text-red-500">Modify</a>
+                        <a href="{{ route('edit', ['id' => $usuario->id]) }}" class="text-blue-900">Modify</a>
                     </td>
                     <td class="px-6 py-4 border-b">
                         <a href="{{ route('delete', ['id' => $usuario->id]) }}" class="text-red-500 delete-link" onclick="return confirmDelete()">Erase</a>

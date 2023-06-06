@@ -1,5 +1,5 @@
 <div class="flex flex-grow">
-    <div class="flex-shrink-0 bg-red-500 h-auto" style="width: 17rem;">
+    <div class="flex-shrink-0 bg-slate-600 h-auto" style="width: 17rem;">
       <div class="flex flex-col items-center p-4">
         <h2 class="text-white text-lg">Welcome</h2>
         <div class="w-16 h-16 rounded-full bg-gray-500 mb-4">

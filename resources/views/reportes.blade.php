@@ -36,7 +36,7 @@
                     <td class="px-6 py-4 border-b">{{ $alert->src_address }}</td>
                     <td class="px-6 py-4 border-b">{{ $alert->timestamp }}</td>
                     <td class="px-6 py-4 border-b">
-                        <a href="{{ route('alert_detail', ['id' => $alert->id]) }}" class="text-red-500">Inspect</a>
+                        <a href="{{ route('alert_detail', ['id' => $alert->id]) }}" class="text-orange-500">Inspect</a>
                     </td>
                 </tr>
             @empty

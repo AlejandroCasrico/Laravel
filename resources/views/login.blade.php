@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <style>
-        .bg-gray-100 {
+        .bg-slate-600 {
             width: 550px;
             height: 600px;
             margin-top: 5%;
@@ -19,7 +19,7 @@
 
 <body class="bg-white">
     <div class="flex justify-center items-center h-screen">
-        <div class="bg-gray-100 flex justify-center rounded shadow-2xl" style="position: absolute; z-index: 2;">
+        <div class="bg-slate-600 flex justify-center rounded shadow-2xl" style="position: absolute; z-index: 2;">
             <h1 class="text-5xl text-slate-100">
                 <img src="/assets/logoal.png" class="rounded" alt="">
             </h1>

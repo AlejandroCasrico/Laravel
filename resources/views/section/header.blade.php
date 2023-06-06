@@ -1,7 +1,7 @@
 
 <header>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-<div class="block bg-red-500 text-white p-4 flex justify-between items-center">
+<div class="block bg-red-800 text-white p-4 flex justify-between items-center">
     <h4 class="text-md text-left" id="fecha">Date:</h4>
     <a href="{{ route('home') }}"><img src="/assets/logoal.png" class="rounded" alt="logo" height="200px" width="200px"></a>
     <div>
