@@ -37,6 +37,7 @@ public function home(Request $request)
 
     $query = DB::table('alerts')->orderBy('timestamp', 'DESC');
     $totalAlert = DB::table('alerts')->count();
+    $detail = DB::table('alert_details')->first();
     if ($request->has('show_all')) {
         $alerts = $query->get();
     } else {
@@ -44,7 +45,7 @@ public function home(Request $request)
     }
 
 
-    return view('section.home', compact('usuarios', 'alerts','usuario','totalAlert'));
+    return view('section.home', compact('usuarios', 'alerts','usuario','totalAlert','detail'));
 }
 //muestra toda la tabla
 public function showFullTable(Request $request)

@@ -11,15 +11,18 @@
             <table class="min-w-full">
                 <thead class="bg-red-500">
                     <tr>
+                        <th class="py-2 px-4 bg-red-500 text-left text-white">Incidentes de seguridad confirmados</th>
                         <th class="py-2 px-4 bg-red-500 text-left text-white">Total de alertas</th>
-
+                        <th class="py-2 px-4 bg-red-500 text-left text-white">Acciones correctivas</th>
+                        <th class="py-2 px-4 bg-red-500 text-left text-white">Falsos positivos</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-
+                        <td class="py-2 px-4 border text-black bg-white">{{ $detail->severidad ?? '' }}</td></td>
                         <td class="py-2 px-4 border text-black bg-white">{{ $totalAlert }} </td>
-
+                        <td class="py-2 px-4 border text-black bg-white"> {{ $detail->accionesCorrectivas ?? ''}}</td>
+                        <td class="py-2 px-4 border text-black  bg-white">{{ $detail->incidentesConfirmado ?? ''}}</td>
                     </tr>
                 </tbody>
             </table>
